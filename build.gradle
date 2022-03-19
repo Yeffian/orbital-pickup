@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'dev.yeff.orbital.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClassName("dev.yeff.orbital.example.Main")
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+        maven {  url "https://dl.cloudsmith.io/public/electron-studio/jaylib/maven/" }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'uk.co.electronstudio.jaylib:jaylib:4.0.+'
+    implementation 'uk.co.electronstudio.jaylib:jaylib-natives-windows-x86_64:4.0.+'
+    implementation 'uk.co.electronstudio.jaylib:jaylib-natives-macosx-x86_64:4.0.+'
+    implementation 'uk.co.electronstudio.jaylib:jaylib-natives-linux-x86_64:4.0.+'
+    implementation 'com.github.OrbitalEngine:Orbital:v.0.1'
+}
+
+test {
+    useJUnitPlatform()
+}
