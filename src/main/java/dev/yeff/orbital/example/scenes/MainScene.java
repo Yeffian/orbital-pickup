@@ -15,6 +15,8 @@ public class MainScene implements Scene {
     private Vector2f pos;
     private boolean redOrBlue;
 
+    private static final float SPEED = 13;
+
     @Override
     public void init(Game game) {
         Log.info(getClass(), "initialize main scene");
@@ -27,10 +29,10 @@ public class MainScene implements Scene {
         Keyboard kb = Input.getKeyboard();
         Mouse mouse = Input.getMouse();
 
-        if (kb.isKeyDown(Keys.W)) pos.y -= 13;
-        if (kb.isKeyDown(Keys.A)) pos.x -= 13;
-        if (kb.isKeyDown(Keys.S)) pos.y += 13;
-        if (kb.isKeyDown(Keys.D)) pos.x += 13;
+        if (kb.isKeyDown(Keys.W)) pos.y -= SPEED;
+        if (kb.isKeyDown(Keys.A)) pos.x -= SPEED;
+        if (kb.isKeyDown(Keys.S)) pos.y += SPEED;
+        if (kb.isKeyDown(Keys.D)) pos.x += SPEED;
         if (mouse.isMouseDown(Keys.MOUSE_MIDDLE)) redOrBlue = !redOrBlue;
 
         Renderer.drawCircle(getColor(), pos, 20.0f);
