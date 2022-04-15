@@ -1,49 +1,39 @@
 package dev.yeff.orbital.example.scenes;
 
 import dev.yeff.orbital.Game;
+import dev.yeff.orbital.ecs.GameObject;
+import dev.yeff.orbital.ecs.builders.GameObjectBuilder;
+import dev.yeff.orbital.example.components.ColorChanger;
+import dev.yeff.orbital.example.components.PlayerMovement;
 import dev.yeff.orbital.graphics.Colors;
-import dev.yeff.orbital.graphics.Renderer;
-import dev.yeff.orbital.io.Input;
-import dev.yeff.orbital.io.Keyboard;
-import dev.yeff.orbital.io.Keys;
-import dev.yeff.orbital.io.Mouse;
+import dev.yeff.orbital.graphics.Shapes;
 import dev.yeff.orbital.math.Vector2f;
 import dev.yeff.orbital.scenes.Scene;
 import dev.yeff.orbital.util.Log;
 
-public class MainScene implements Scene {
-    private Vector2f pos;
-    private boolean redOrBlue;
-
-    private static final float SPEED = 13;
+public class MainScene extends Scene {
+    private GameObject player;
 
     @Override
     public void init(Game game) {
         Log.info(getClass(), "initialize main scene");
-        redOrBlue = true;
-        pos = game.getScreenCenter();
+        
+        player = new GameObjectBuilder()
+                .withTransform(game.getScreenCenter(), new Vector2f(20.0f, 20.0f))
+                .withShape(Shapes.CIRCLE, Colors.RED)
+                .withComponents(new PlayerMovement(), new ColorChanger())
+                .build();
+
+        addGameObject(game, player);
     }
 
     @Override
     public void update(Game game, float fps) {
-        Keyboard kb = Input.getKeyboard();
-        Mouse mouse = Input.getMouse();
 
-        if (kb.isKeyDown(Keys.W)) pos.y -= SPEED;
-        if (kb.isKeyDown(Keys.A)) pos.x -= SPEED;
-        if (kb.isKeyDown(Keys.S)) pos.y += SPEED;
-        if (kb.isKeyDown(Keys.D)) pos.x += SPEED;
-        if (mouse.isMouseDown(Keys.MOUSE_MIDDLE)) redOrBlue = !redOrBlue;
-
-        Renderer.drawCircle(getColor(), pos, 20.0f);
     }
 
     @Override
     public void dispose(Game game) {
         System.out.println("dispose stuff here");
-    }
-
-    private Colors getColor() {
-        return redOrBlue ? Colors.RED : Colors.BLUE;
     }
 }
