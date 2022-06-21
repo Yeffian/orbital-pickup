@@ -18,7 +18,7 @@ public class MainScene extends Scene {
     public void init(Game game) {
         Log.info(getClass(), "initialize main scene");
         
-        player = new GameObjectBuilder()
+        player = new GameObjectBuilder(this, "Player")
                 .withTransform(game.getScreenCenter(), new Vector2f(20.0f, 20.0f))
                 .withShape(Shapes.CIRCLE, Colors.RED)
                 .withComponents(new PlayerMovement(), new ColorChanger())

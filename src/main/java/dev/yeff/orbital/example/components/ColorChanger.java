@@ -2,7 +2,7 @@ package dev.yeff.orbital.example.components;
 
 import dev.yeff.orbital.Game;
 import dev.yeff.orbital.ecs.Component;
-import dev.yeff.orbital.ecs.components.RenderShapeComponent;
+import dev.yeff.orbital.ecs.components.render.RenderShapeComponent;
 import dev.yeff.orbital.graphics.Colors;
 import dev.yeff.orbital.io.Input;
 import dev.yeff.orbital.io.Keys;
