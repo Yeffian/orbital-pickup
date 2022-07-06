@@ -1,17 +1,7 @@
-# orbital-java-example
+## Orbital Pickup
 
-A basic application using Orbital, written in Java
+A project using Orbital that lets you pick up and drop objects.
 
-## Usage
-To use this template, you can click the "Use this template" button on the repo, and get it on your account. Next, you can clone that repository onto your local computer, and change into it, using the following commands:
-```
-git clone https://github.com/<username>/orbital-java-example
-cd orbital-java-example
-```
+## Known Bugs
 
-To run the app, you can use this command:
-
-```groovy
-gradlew run
-```
-
+If you try to pick up multiple objects, the object on the higher render layer is shown, and the other objects arent.
